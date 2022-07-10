@@ -1,15 +1,15 @@
-let endDate = new Date("Mar 15, 2024 12:00:00");
+let endDate: Date = new Date("Mar 15, 2024 12:00:00");
 let timer = setInterval(() => {
 
-    const now = new Date().getTime();
-    const timeLeft = Number(endDate) /*endDate.getTime()*/ - now;
+    const now: number = new Date().getTime();
+    const timeLeft: number = Number(endDate) /*endDate.getTime()*/ - now;
     
     if (timeLeft >= 0) {
         
-        let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let mins = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        let secs = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        let days: number = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        let hours: number = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let mins: number = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        let secs: number = Math.floor((timeLeft % (1000 * 60)) / 1000);
         
         const timerDays = document.getElementById('timer-days') as HTMLDivElement | null;
         const timerHours = document.getElementById('timer-hours') as HTMLDivElement | null;
@@ -43,7 +43,7 @@ let timer = setInterval(() => {
     }
 }, 1000);
 
-function clicked() {
+function clicked(): void {
     alert(endDate);
 }
 
