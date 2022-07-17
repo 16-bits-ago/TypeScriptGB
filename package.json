@@ -1,23 +1,15 @@
 {
-  "name": "typesctiptgb",
+  "name": "ts-1",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node .",
-    "build:dev": "tsc -p tsconfig-dev.json"  
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/16-bits-ago/TypeScriptGB.git"
+    "build:dev": "tsc -p tsconfig-dev.json",
+    "start": "node ."
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/16-bits-ago/TypeScriptGB/issues"
-  },
-  "homepage": "https://github.com/16-bits-ago/TypeScriptGB#readme",
   "devDependencies": {
     "@types/node": "^18.0.0",
     "typescript": "^4.7.4"

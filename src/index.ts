@@ -1,47 +1,61 @@
-/* const getArgs = () => {
-    return process.argv.slice(2); // argv - массив аргументов [ 1.Путь к ноде, 2.Путь к этому файлу]
+import { Book } from "./entities/Book";
+import { Notepad } from "./entities/Notepad";
+import { Product } from "./entities/Product";
+import { MyMap } from "./common/MyMap";
+
+const showData = (entity: unknown): void => {
+  if (entity instanceof Book) {
+    console.log(
+      `Книга - ${entity.title} - ${entity.author} - ${getPrice(entity)}`
+    );
+  } else if (entity instanceof Notepad) {
+    console.log(`Блокнот - ${getPrice(entity)}`);
+  }
 };
 
-const forEach = (array, callback) => {
-    array.forEach((value) => callback(value));
+const getPrice = (entity: Book | Notepad): string => {
+  return entity.price ? entity.price.toString() : "не продается";
+};
+
+const getFrom = <T extends Product<any>>(
+  obj: Record<string, T>,
+  title: string
+): T | undefined => {
+  return obj[title];
 };
 
 const main = () => {
-    const args = getArgs();
-    forEach(args, console.log);
-};
+  const map = new MyMap<string, Product>();
+  console.log(1, map.getAll());
 
-main(); */
+  map.set("title 1", new Book("title 1", "author 1", "fantasy", 5));
+  console.log(2, map.getAll());
 
-const getArgs = (): string[] | undefined => {
-    const args = process.argv.slice(2); // argv - массив аргументов [ 1.Путь к ноде, 2.Путь к этому файлу]
+  map.set("title 2", new Notepad("title 2"));
+  console.log(3, map.getAll());
 
-    if (args.length) {
-        return args;
-    }
+  map.remove("title 2");
+  console.log(4, map.getAll());
 
-     return undefined;
-};
+  map.set("title 2", new Notepad("title 2"));
+  console.log(5, map.getAll());
 
-/* const forEach = (array: any[], callback: (value: any) => void) => {
-    array.forEach((value) => callback(value));
-}; */
+  map.clear();
+  console.log(5, map.getAll());
 
-//Generic
-const forEach = <T = any> (array: T[], callback: (value: T) => void) => {  
-    array.forEach((value) => callback(value));
-};
-//Generic\
+  // const books = {
+  //   "title 1": new Book("title 1", "author 1", "fantasy", 5),
+  //   "title 2": new Book("title 2", "author 2", "other"),
+  // };
 
-const main = () => {
-    const args = getArgs();
+  // const notepads = {
+  //   "title 1": new Notepad("title 1", 5),
+  //   "title 2": new Notepad("title 2"),
+  // };
 
-    if(args){
-        forEach(args, (value) => console.log(value, typeof value));
-    } else {
-        console.log("net peredannih args")
-    }
-
+  // console.log(getFrom<Book>(books, "title 1"));
+  // console.log(getFrom<Notepad>(notepads, "title 3"));
 };
 
 main();
+
